@@ -7,7 +7,8 @@
 Подключитесь к восстановленной БД и получите список таблиц из этой БД.
 Приведите в ответе количество записей с price > 300.
 В следующих заданиях мы будем продолжать работу с этим контейнером.
-### Ответ:
+### Ответ: 
+Запускаем контейнер при помощи команды docker run и далее по схеме
 ```
 sudo docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=test_db -v mysql_data:/var/lib/mysql
 -p 3306:3306 mysql:8
@@ -27,8 +28,8 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql> \h
 ```
-Запускаем контейнер при помощи команды docker run
-![z1]()
+![z1](https://github.com/EVolgina/devops27-mysql/blob/main/zd-1.PNG)
+![sh]()
 ```
 mysql> USE test_db;
 Database changed
