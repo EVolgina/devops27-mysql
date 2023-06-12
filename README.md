@@ -30,6 +30,7 @@ mysql> \h
 ```
 ![z1](https://github.com/EVolgina/devops27-mysql/blob/main/zd-1.PNG)
 ![sh](https://github.com/EVolgina/devops27-mysql/blob/main/status.PNG)
+Подключаемся к базе данных,которую создали
 ```
 mysql> USE test_db;
 Database changed
