@@ -63,7 +63,7 @@ mysql> select count(*) from orders where price > 300;
 - Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES, получите данные по пользователю test и приведите в ответе к задаче.
 ### Ответ:
 ```
-mysql> CREATE USER 'test'@'localhost' - создаем пользователя с данными из задачи
+mysql> CREATE USER 'test'@'localhost' -                создаем пользователя с данными из задачи
     ->     IDENTIFIED WITH mysql_native_password BY 'test-pass'
     ->     WITH MAX_CONNECTIONS_PER_HOUR 100
     ->     PASSWORD EXPIRE INTERVAL 180 DAY
@@ -97,9 +97,10 @@ mysql> SHOW PROFILES;
 +----------+------------+----------------------+
 1 row in set, 1 warning (0.00 sec)
 ```
+- определяем механизм хранения, используемый в таблице базы данных test_db, запросом базу данных information_schema
 ```
-mysql> SELECT table_name, engine      - определяем механизм хранения, используемый в таблице базы данных test_db, запросом базу данных  
-    -> FROM information_schema.tables                               information_schema
+mysql> SELECT table_name, engine       
+    -> FROM information_schema.tables                               
     -> WHERE table_schema = 'test_db';
 +------------+--------+
 | TABLE_NAME | ENGINE |
@@ -154,9 +155,7 @@ WHERE table_schema = 'test_db' |
 ```
 # Задача 4
 Изучите файл my.cnf в директории /etc/mysql.
-
 Измените его согласно ТЗ (движок InnoDB):
-
 скорость IO важнее сохранности данных;
 нужна компрессия таблиц для экономии места на диске;
 размер буффера с незакомиченными транзакциями 1 Мб;
