@@ -29,7 +29,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql> \h
 ```
 ![z1](https://github.com/EVolgina/devops27-mysql/blob/main/zd-1.PNG)
-![sh]()
+![sh](https://github.com/EVolgina/devops27-mysql/blob/main/status.PNG)
 ```
 mysql> USE test_db;
 Database changed
