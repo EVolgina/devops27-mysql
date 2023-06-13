@@ -154,11 +154,56 @@ WHERE table_schema = 'test_db' |
 6 rows in set, 1 warning (0.00 sec)
 ```
 # Задача 4
-Изучите файл my.cnf в директории /etc/mysql.
-Измените его согласно ТЗ (движок InnoDB):
-скорость IO важнее сохранности данных;
-нужна компрессия таблиц для экономии места на диске;
-размер буффера с незакомиченными транзакциями 1 Мб;
-буффер кеширования 30% от ОЗУ;
-размер файла логов операций 100 Мб.
+- Изучите файл my.cnf в директории /etc/mysql.
+- Измените его согласно ТЗ (движок InnoDB):
+- скорость IO важнее сохранности данных;
+- нужна компрессия таблиц для экономии места на диске;
+- размер буффера с незакомиченными транзакциями 1 Мб;
+- буффер кеширования 30% от ОЗУ;
+- размер файла логов операций 100 Мб.\
 Приведите в ответе изменённый файл my.cnf
+```
+vagrant@server1:~/mysql$ sudo docker exec -it c0eb718e2f4f bash
+bash-4.4# mysql -u root -p
+Enter password:
+bash-4.4# cat /etc/my.cnf
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/8.0/en/server-configuration-defaults.html
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+
+# Remove leading # to revert to previous value for default_authentication_plugin,
+# this will increase compatibility with older clients. For background, see:
+# https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_default_authentication_plugin
+# default-authentication-plugin=mysql_native_password
+skip-host-cache
+skip-name-resolve
+datadir=/var/lib/mysql
+socket=/var/run/mysqld/mysqld.sock
+secure-file-priv=/var/lib/mysql-files
+user=mysql
+
+pid-file=/var/run/mysqld/mysqld.pid
+[client]
+socket=/var/run/mysqld/mysqld.sock
+!includedir /etc/mysql/conf.d/
+innodb_flush_log_at_trx_commit = 0
+innodb_file_format=Barracuda
+innodb_log_buffer_size= 1M
+key_buffer_size = 300M
+max_binlog_size= 100M
+```
